@@ -35,6 +35,20 @@
              (divisor-upto (- k 1)))))
   (not (divisor-upto (min a b))))
 
+(define (count-rel-prime n)
+  (define (helper a b)
+    (cond ((= b 1) 1)
+           ((rel-prime a b)
+            (+ 1 (helper a (- b 1))))
+           (else (helper a (- b 1)))
+           ))
+  (define (helper2 n)
+    (if (= n 1) 1
+        (+ (helper n (- n 1))
+           (helper2 (- n 1)))
+        ))
+  (helper2 n))
+
 ; 4a Lucas Numbers
 (define (lucas n)
   (cond ((= n 0) 2)
@@ -147,10 +161,17 @@
         ((and (> m 0) (= n 0)) (ack (- m 1) 1))
         ((and (> m 0) (> n 0)) (ack (- m 1) (ack m (- n 1))))))
 
-; 9 Catalan numbers FINISH
+; 9 Catalan numbers
 (define (catalan n)
-  (if (> 0 n)
+  (if (= n 0)
       1
-      (/ (+ (catalan (- n 1)) 2) 2)))
+      (/ (factorial (* n 2))
+         (* (factorial (+ n 1))
+            (factorial n)))))
 
-(catalan 3)
+(define (factorial n)
+  (if (= n 1)
+      1
+      (* n (factorial (- n 1)))
+      )
+  )
