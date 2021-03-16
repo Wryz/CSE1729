@@ -1,4 +1,3 @@
-
 ;;1a
 (define (list-at l i)
   (if (equal? i 0)
