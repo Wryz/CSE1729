@@ -11,7 +11,7 @@
   (/ (factorial (* n 2))
      (* (factorial (+ n 1))
         (factorial n))))
-
+;;DOES NOT WORK (pls help me)
 (define (leibniz-pi n)
   (- 1 (accumulate + 0 (lambda (x) (/ (expt -1 x) (+ 1 (* x 2)))) 1 (lambda (x) (+ x 1)) n)))
 
@@ -60,3 +60,4 @@
     (cons (/ (+ (* a c)(* b d)) (+ (expt c 2) (expt d 2)))
           (/ (- (* b c) (* a d)) (+ (expt c 2) (expt d 2))))))
 
+;;HAVE NOT COMPLETED PROBLEM #4
