@@ -1,4 +1,4 @@
-
+#lang racket
 ;;1
 (define (zip lsta lstb)
   (if (or (null? lsta)
@@ -17,7 +17,6 @@
                  (second (cdr rest)))
            (cons (cons (caar plist) first)
                   (cons (cdar plist) second)))))
-(unzip (list (cons 1 4) (cons 2 5) (cons 3 6)))
 ;;3
 (define ( change n denominations)
    ( cond ((< n 0) 0)
@@ -40,7 +39,19 @@
                  (helper (car den)
                          (make-change (- n (car den)) den))))))
 ;;5
-
+(define (rle coins)
+  (define (rlehelper coins prev count)
+    (cond ((null? coins) (list (cons count prev)))
+          ((= (car coins) prev) (rlehelper (cdr coins) prev (+ count 1)))
+          (else (cons (cons count prev) (rlehelper (cdr coins) (car coins) 1)))))
+  (rlehelper coins (car coins) 0))
+;6
+(define (rle-all xcoins)
+  (define (rle-all-helper xcoins)
+    (if (null? xcoins)
+        '()
+        (cons (rle (car xcoins)) (rle-all-helper (cdr xcoins)))))
+  (rle-all-helper xcoins))
 ;;7a
 (define (list-sum  elements)
   (if (null? elements)
